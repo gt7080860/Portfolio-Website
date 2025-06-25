@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gaurav Tiwari | Portfolio</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Gaurav Tiwari</h1>
+    <nav>
+      <ul>
+        <li><a href="#hero">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="/admin">Admin</a></li>
+
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero">
+    <h2>Prompt Engineer & Market Research Analyst</h2>
+    <p>
+      Result-driven Prompt Engineer and Market Research Analyst with expertise in Intelligent Document Processing (IDP) and Enterprise Fraud Management (EFM). Proven ability to craft high-impact prompts, build vendor capability maps, and deliver actionable insights. Strong foundation in machine learning, with hands-on experience in Python and data analysis.
+    </p>
+    <a href="/static/Gaurav_Tiwari_Resume.pdf" class="btn" download>Download Resume</a>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/gauravtiwari2109/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/gt7080860" target="_blank">GitHub</a>
+      <a href="mailto:gt780860@gmail.com">Email</a>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <p><strong>Market Research Analyst – SWOT & GIST</strong> (Oct 2024 – Present)</p>
+    <ul>
+      <li>Conducted in-depth research on Intelligent Document Processing (IDP) and Enterprise Fraud Management (EFM).</li>
+      <li>Drafted 10+ comprehensive vendor profiles highlighting capabilities, market positioning, and strategy.</li>
+      <li>Built Capability Mapping Reports, aiding decision-making for clients and internal stakeholders.</li>
+      <li>Integrated prompt engineering techniques into market research workflows to boost insight quality.</li>
+      <li>Reduced report turnaround time by 20% by applying task-specific prompting and automation tools.</li>
+    </ul>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <p><strong>B.Tech. (CSE)</strong> - Roorkee College Of Engineering (2021 – 2024)</p>
+    <p>Grades: 70.69%</p>
+    <p><strong>Diploma (Computer Science)</strong> - BTTI Pilani (2018 – 2021)</p>
+    <p>Grades: 77.43%</p>
+    <p><strong>Secondary</strong> - VCS Mandawar (2017 – 2018)</p>
+    <p>Grades: 85.67%</p>
+  </section>
+
+  <section id="skills">
+  <h2>Skills</h2>
+  <ul>
+    <li><strong>Prompt Engineering:</strong> Persona-based design, zero-shot and few-shot prompting</li>
+    <li><strong>Frameworks & Tools:</strong> Tkinter, Flask, Git, SMTP, Scikit-learn</li>
+    <li><strong>Soft Skills:</strong> Critical thinking, problem-solving, collaboration</li>
+    <li><strong>Market Research:</strong> Competitive analysis, vendor profiling, SWOT analysis, capability mapping</li>
+    <li><strong>Data Science:</strong> Regression, Clustering, Data Preprocessing, Naive Bayes</li>
+    <li><strong>Programming:</strong> Python, C++, HTML, CSS</li>
+  </ul>
+</section>
+
+<section id="projects">
+    <h2>Projects</h2>
+    {% if projects %}
+      {% for p in projects %}
+        <div class="project">
+          <h3>{{ p.name }}</h3>
+          <p>{{ p.description }}</p>
+          <p><strong>Start:</strong> {{ p.start_date }} &nbsp; | &nbsp; <strong>End:</strong> {{ p.end_date }}</p>
+
+          <a href="{{ url_for('download_file', filename=p.file) }}" class="btn">Download</a>
+
+{% if is_admin %}
+  <form action="{{ url_for('delete_project', filename=p.file) }}" method="POST" style="display:inline;">
+    <button type="submit" class="btn" style="background-color:#e74c3c; margin-left:8px;">Delete</button>
+  </form>
+{% endif %}
+
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No projects added yet.</p>
+    {% endif %}
+  </section>
+
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <ul>
+      <li>Prompt Engineering For ChatGPT – Coursera (2024)</li>
+      <li>Python for Data Science – NPTEL (2022)</li>
+      <li>Artificial Intelligence Fundamentals – IBM Skill Build (2024)</li>
+      <li>Basics of Machine Learning – Great Learning Academy (2024)</li>
+      <li>OOP'S Using C++ – Great Learning Academy (2022)</li>
+      <li>Computer Vision Essentials – Great Learning Academy (2024)</li>
+    </ul>
+  </section>
+
+  <section id="co-curricular">
+    <h2>Co-Curricular Activities</h2>
+    <ul>
+      <li>Completed 2-month intensive AI/ML training (Jul 2023 – Sep 2023)</li>
+      <li>University-recognized achievement for top performance in NPTEL certification (Mar 2023 – Apr 2023)</li>
+    </ul>
+  </section>
+
+  <section id="extracurricular">
+    <h2>Extracurricular Activities</h2>
+    <ul>
+      <li>Actively participated in university theatre with Swar Sangam group in Kolkata</li>
+      <li>Engaged in debates on social and policy issues at collegiate events</li>
+    </ul>
+  </section>
+
+  <section id="languages">
+    <h2>Languages</h2>
+    <ul>
+      <li>English</li>
+      <li>Hindi</li>
+    </ul>
+  </section>
+
+  <section id="hobbies">
+    <h2>Hobbies</h2>
+    <ul>
+      <li>Cooking</li>
+      <li>Travelling</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:gt780860@gmail.com">gt780860@gmail.com</a></p>
+    <p>Phone: <a href="tel:+919352859545">+91 9352859545</a></p>
+  </section>
+
+ <footer>
+    <p>© 2025 Gaurav Tiwari</p>
+  </footer>
+</body>
+</html>

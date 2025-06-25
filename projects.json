@@ -1,0 +1,23 @@
+[
+  {
+    "name": " Email Sending System with multi-user functionality",
+    "description": "Developed an email application with multi-user functionality using Tkinter and SMTP.\r\nEnabled real-time messaging.",
+    "start_date": "2024-02",
+    "end_date": "2025-03",
+    "file": "email_system.zip"
+  },
+  {
+    "name": " Sentiment Analysis Web App",
+    "description": "Built a sentiment analysis tool using Naive Bayes Classifier.\r\nDesigned frontend with HTML/CSS and developed backend in Python.\r\nAchieved ~85% accuracy on test data.",
+    "start_date": "2023-12",
+    "end_date": "2024-01",
+    "file": "Sentiment_analysis_web_app.zip"
+  },
+  {
+    "name": " Banking Management System",
+    "description": "Created a desktop app using Python Tkinter for managing user accounts and transactions.\r\nImplemented login, deposit, and withdrawal functionalities.",
+    "start_date": "2022-07",
+    "end_date": "2022-10",
+    "file": "GUI_Banking_system.zip"
+  }
+]

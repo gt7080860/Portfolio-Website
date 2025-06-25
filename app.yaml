@@ -1,0 +1,11 @@
+runtime: python39
+
+env_variables:
+  ADMIN_PASSWORD: "your_strong_password_here"
+
+handlers:
+- url: /static
+  static_dir: static
+
+- url: /.*
+  script: auto
