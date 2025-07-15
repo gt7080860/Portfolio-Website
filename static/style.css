@@ -313,3 +313,6 @@ html {
     justify-content: center;
   }
 }
+.project p {
+  white-space: pre-line;
+}
