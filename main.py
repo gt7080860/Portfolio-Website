@@ -3,6 +3,8 @@ import os
 import psycopg2
 from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
+print("Loaded env from:", find_dotenv())   # add temporarily
 
 load_dotenv()
 
