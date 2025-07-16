@@ -76,7 +76,8 @@
       {% for p in projects %}
         <div class="project">
           <h3>{{ p.name }}</h3>
-          <p>{{ p.description | replace('\n', '<br>') | safe }}</p>
+          <pre style="white-space: pre-wrap; font-family: inherit; margin: 0;">{{ p.description }}</pre>
+
           <p><strong>Start:</strong> {{ p.start_date }} &nbsp; | &nbsp; <strong>End:</strong> {{ p.end_date }}</p>
 
           <a href="{{ url_for('download_file', filename=p.file) }}" class="btn">Download</a>
