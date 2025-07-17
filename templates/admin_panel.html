@@ -23,6 +23,13 @@
       <button type="submit" class="btn">Upload</button>
     </form>
 
+    <!-- ✅ Resume Upload Section -->
+    <h2 style="margin-top: 40px;">Upload Resume</h2>
+    <form action="/upload-resume" method="POST" enctype="multipart/form-data">
+      <input type="file" name="resume_file" accept=".pdf" required />
+      <button type="submit" class="btn">Upload Resume</button>
+    </form>
+
     <form action="/admin-logout" method="GET" style="margin-top: 20px;">
       <button type="submit" class="btn" style="background-color: #e74c3c;">Logout</button>
     </form>

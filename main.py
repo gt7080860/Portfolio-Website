@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory, flash, session
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory, flash, session, send_file
 import os
 import psycopg2
 from werkzeug.utils import secure_filename
-from dotenv import load_dotenv
 from dotenv import load_dotenv, find_dotenv
-print("Loaded env from:", find_dotenv())   # add temporarily
+
+print("Loaded env from:", find_dotenv())  # Temporary debug print
 
 load_dotenv()
 
@@ -12,12 +12,13 @@ app = Flask(__name__)
 app.secret_key = 'gt_secret_key'
 
 UPLOAD_FOLDER = 'static/uploads'
+RESUME_PATH = 'static/resume.pdf'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 PASSWORD = os.environ.get('ADMIN_PASSWORD', 'fallbackpass')
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
-# Ensure the upload directory exists
+# Ensure upload directory exists
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # --- Database Connection ---
@@ -136,6 +137,30 @@ def delete_project(filename):
 @app.route('/download/<filename>')
 def download_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
+
+
+@app.route('/upload-resume', methods=['GET', 'POST'])
+def upload_resume():
+    if not session.get('admin'):
+        flash("Unauthorized access.")
+        return redirect(url_for('admin'))
+
+    if request.method == 'POST':
+        resume = request.files.get('resume')
+        if resume and resume.filename.endswith('.pdf'):
+            resume.save(RESUME_PATH)
+            flash("Resume uploaded successfully.")
+            return redirect(url_for('admin'))
+        else:
+            flash("Please upload a PDF file.")
+            return redirect(url_for('upload_resume'))
+
+    return render_template('upload_resume.html')
+
+
+@app.route('/resume')
+def download_resume():
+    return send_file(RESUME_PATH, as_attachment=True)
 
 
 if __name__ == '__main__':
