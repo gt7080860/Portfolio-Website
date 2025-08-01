@@ -17,8 +17,7 @@
         <li><a href="#experience">Experience</a></li>
         <li><a href="#certifications">Certifications</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="/admin">Admin</a></li>
-
+         
       </ul>
     </nav>
   </header>
@@ -72,29 +71,21 @@
 </section>
 
 <section id="projects">
-    <h2>Projects</h2>
-    {% if projects %}
-      {% for p in projects %}
-        <div class="project">
-          <h3>{{ p.name }}</h3>
-          <pre style="white-space: pre-wrap; font-family: inherit; margin: 0;">{{ p.description }}</pre>
+  <h2>Projects</h2>
+  {% if projects %}
+    {% for p in projects %}
+      <div class="project">
+        <h3>{{ p.name }}</h3>
+        <pre style="white-space: pre-wrap; font-family: inherit; margin: 0;">{{ p.description }}</pre>
+        <p><strong>Start:</strong> {{ p.start_date }} &nbsp; | &nbsp; <strong>End:</strong> {{ p.end_date }}</p>
+        <a href="{{ url_for('download_file', filename=p.file) }}" class="btn">Download</a>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No projects added yet.</p>
+  {% endif %}
+</section>
 
-          <p><strong>Start:</strong> {{ p.start_date }} &nbsp; | &nbsp; <strong>End:</strong> {{ p.end_date }}</p>
-
-          <a href="{{ url_for('download_file', filename=p.file) }}" class="btn">Download</a>
-
-{% if is_admin %}
-  <form action="{{ url_for('delete_project', filename=p.file) }}" method="POST" style="display:inline;">
-    <button type="submit" class="btn" style="background-color:#e74c3c; margin-left:8px;">Delete</button>
-  </form>
-{% endif %}
-
-        </div>
-      {% endfor %}
-    {% else %}
-      <p>No projects added yet.</p>
-    {% endif %}
-  </section>
 
   <section id="certifications">
     <h2>Certifications</h2>
