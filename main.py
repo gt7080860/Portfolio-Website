@@ -4,11 +4,11 @@ import json
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = 'static/uploads'
+#UPLOAD_FOLDER = 'static/uploads'
 RESUME_PATH = 'static/Gaurav_Tiwari_Resume.pdf'
 PROJECTS_JSON = 'projects.json'
 
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 @app.route('/')
