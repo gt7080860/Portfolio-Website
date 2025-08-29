@@ -1,4 +1,5 @@
-fetch("projects.json")
+fetch("/static/projects.json")
+// fetches from same folder as script.js
   .then((response) => response.json())
   .then((projects) => {
     const container = document.getElementById("projects-container");

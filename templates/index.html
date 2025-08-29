@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gaurav Tiwari | Portfolio</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="static/style.css" />
 </head>
 <body>
   <header>
@@ -17,7 +17,6 @@
         <li><a href="#experience">Experience</a></li>
         <li><a href="#certifications">Certifications</a></li>
         <li><a href="#contact">Contact</a></li>
-         
       </ul>
     </nav>
   </header>
@@ -27,8 +26,7 @@
     <p>
       Result-driven Prompt Engineer and Market Research Analyst with expertise in Intelligent Document Processing (IDP) and Enterprise Fraud Management (EFM). Proven ability to craft high-impact prompts, build vendor capability maps, and deliver actionable insights. Strong foundation in machine learning, with hands-on experience in Python and data analysis.
     </p>
-    <a href="{{ url_for('download_resume') }}" class="btn" download>Download Resume</a>
-
+    <a href="static/Gaurav_Tiwari_Resume.pdf" class="btn" download>Download Resume</a>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/gauravtiwari2109/" target="_blank">LinkedIn</a>
       <a href="https://github.com/gt7080860" target="_blank">GitHub</a>
@@ -51,40 +49,31 @@
   <section id="education">
     <h2>Education</h2>
     <p><strong>B.Tech. (CSE)</strong> - Roorkee College Of Engineering (2021 – 2024)</p>
-    <p>Grades: 70.69%</p>
     <p><strong>Diploma (Computer Science)</strong> - BTTI Pilani (2018 – 2021)</p>
-    <p>Grades: 77.43%</p>
     <p><strong>Secondary</strong> - VCS Mandawar (2017 – 2018)</p>
-    <p>Grades: 85.67%</p>
   </section>
 
   <section id="skills">
-  <h2>Skills</h2>
-  <ul>
-    <li><strong>Prompt Engineering:</strong> Persona-based design, zero-shot and few-shot prompting</li>
-    <li><strong>Frameworks & Tools:</strong> Tkinter, Flask, Git, SMTP, Scikit-learn</li>
-    <li><strong>Soft Skills:</strong> Critical thinking, problem-solving, collaboration</li>
-    <li><strong>Market Research:</strong> Competitive analysis, vendor profiling, SWOT analysis, capability mapping</li>
-    <li><strong>Data Science:</strong> Regression, Clustering, Data Preprocessing, Naive Bayes</li>
-    <li><strong>Programming:</strong> Python, C++, HTML, CSS</li>
-  </ul>
+    <h2>Skills</h2>
+    <ul>
+      <li><strong>Prompt Engineering:</strong> Persona-based design, zero-shot and few-shot prompting</li>
+      <li><strong>Frameworks & Tools:</strong> Tkinter, Flask, Git, SMTP, Scikit-learn</li>
+      <li><strong>Soft Skills:</strong> Critical thinking, problem-solving, collaboration</li>
+      <li><strong>Market Research:</strong> Competitive analysis, vendor profiling, SWOT analysis, capability mapping</li>
+      <li><strong>Data Science:</strong> Regression, Clustering, Data Preprocessing, Naive Bayes</li>
+      <li><strong>Programming:</strong> Python, C++, HTML, CSS</li>
+    </ul>
+  </section>
+
+  <section id="projects">
+  <h2>Projects</h2>
+  <div id="projects-container">
+    <p>Loading projects...</p>
+  </div>
 </section>
 
-<section id="projects">
-  <h2>Projects</h2>
-  {% if projects %}
-    {% for p in projects %}
-      <div class="project">
-        <h3>{{ p.name }}</h3>
-        <pre style="white-space: pre-wrap; font-family: inherit; margin: 0;">{{ p.description }}</pre>
-        <p><strong>Start:</strong> {{ p.start_date }} &nbsp; | &nbsp; <strong>End:</strong> {{ p.end_date }}</p>
-        <a href="{{ url_for('download_file', filename=p.file) }}" class="btn">Download</a>
-      </div>
-    {% endfor %}
-  {% else %}
-    <p>No projects added yet.</p>
-  {% endif %}
-</section>
+<!-- Script -->
+<script src="static/script.js"></script>
 
 
   <section id="certifications">
@@ -99,46 +88,16 @@
     </ul>
   </section>
 
-  <section id="co-curricular">
-    <h2>Co-Curricular Activities</h2>
-    <ul>
-      <li>Completed 2-month intensive AI/ML training (Jul 2023 – Sep 2023)</li>
-      <li>University-recognized achievement for top performance in NPTEL certification (Mar 2023 – Apr 2023)</li>
-    </ul>
-  </section>
-
-  <section id="extracurricular">
-    <h2>Extracurricular Activities</h2>
-    <ul>
-      <li>Actively participated in university theatre with Swar Sangam group in Kolkata</li>
-      <li>Engaged in debates on social and policy issues at collegiate events</li>
-    </ul>
-  </section>
-
-  <section id="languages">
-    <h2>Languages</h2>
-    <ul>
-      <li>English</li>
-      <li>Hindi</li>
-    </ul>
-  </section>
-
-  <section id="hobbies">
-    <h2>Hobbies</h2>
-    <ul>
-      <li>Cooking</li>
-      <li>Travelling</li>
-    </ul>
-  </section>
-
   <section id="contact">
     <h2>Contact</h2>
     <p>Email: <a href="mailto:gt780860@gmail.com">gt780860@gmail.com</a></p>
     <p>Phone: <a href="tel:+919352859545">+91 9352859545</a></p>
   </section>
 
- <footer>
+  <footer>
     <p>© 2025 Gaurav Tiwari</p>
   </footer>
+
+  <script src="static/script.js"></script>
 </body>
 </html>
