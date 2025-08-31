@@ -574,6 +574,17 @@ section:nth-child(even) {
   margin-bottom: 0.3rem;
 }
 
+.cert-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cert-link:hover {
+  color: var(--primary);
+  text-shadow: 0 0 8px rgba(37, 99, 235, 0.6);
+}
+
 .cert-info p {
   color: var(--text-muted);
   font-size: 0.9rem;
