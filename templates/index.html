@@ -5,97 +5,305 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gaurav Tiwari | Portfolio</title>
   <link rel="stylesheet" href="static/style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+  <div class="bg-particles"></div>
+  
   <header>
-    <h1>Gaurav Tiwari</h1>
-    <nav>
-      <ul>
-        <li><a href="#hero">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="nav-container">
+      <div class="logo">Gaurav Tiwari</div>
+      <nav>
+        <div class="menu-toggle" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul id="nav-menu">
+          <li><a href="#hero" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#certifications" class="nav-link">Certifications</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <section id="hero" class="hero">
-    <h2>Prompt Engineer & Market Research Analyst</h2>
-    <p>
-      Result-driven Prompt Engineer and Market Research Analyst with expertise in Intelligent Document Processing (IDP) and Enterprise Fraud Management (EFM). Proven ability to craft high-impact prompts, build vendor capability maps, and deliver actionable insights. Strong foundation in machine learning, with hands-on experience in Python and data analysis.
-    </p>
-    <a href="static/Gaurav_Tiwari_Resume.pdf" class="btn" download>Download Resume</a>
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/gauravtiwari2109/" target="_blank">LinkedIn</a>
-      <a href="https://github.com/gt7080860" target="_blank">GitHub</a>
-      <a href="mailto:gt780860@gmail.com">Email</a>
-    </div>
-  </section>
+  <main>
+    <section id="hero" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Gaurav Tiwari</h1>
+          <h2 class="hero-subtitle">Prompt Engineer & Market Research Analyst</h2>
+          <p class="hero-description">
+            Result-driven professional with expertise in Intelligent Document Processing (IDP) and Enterprise Fraud Management (EFM). Proven ability to craft high-impact prompts, build vendor capability maps, and deliver actionable insights with a strong foundation in machine learning and data analysis.
+          </p>
+          <div class="hero-buttons">
+            <a href="#contact" class="btn btn-primary">
+              <i class="fas fa-envelope"></i>
+              Get In Touch
+            </a>
+            <a href="/resume" class="btn btn-outline">
+              <i class="fas fa-download"></i>
+              Download Resume
+            </a>
+          </div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/gauravtiwari2109/" target="_blank" class="social-link">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/gt7080860" target="_blank" class="social-link">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:gt780860@gmail.com" class="social-link">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="experience">
-    <h2>Experience</h2>
-    <p><strong>Market Research Analyst – SWOT & GIST</strong> (Oct 2024 – Present)</p>
-    <ul>
-      <li>Conducted in-depth research on Intelligent Document Processing (IDP) and Enterprise Fraud Management (EFM).</li>
-      <li>Drafted 10+ comprehensive vendor profiles highlighting capabilities, market positioning, and strategy.</li>
-      <li>Built Capability Mapping Reports, aiding decision-making for clients and internal stakeholders.</li>
-      <li>Integrated prompt engineering techniques into market research workflows to boost insight quality.</li>
-      <li>Reduced report turnaround time by 20% by applying task-specific prompting and automation tools.</li>
-    </ul>
-  </section>
+    <section id="skills" class="fade-in">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Skills & Expertise</h2>
+          <p class="section-subtitle">Technologies and tools I work with</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <h3><i class="fas fa-brain"></i> Prompt Engineering</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Persona-based Design</span>
+              <span class="skill-tag">Zero-shot Prompting</span>
+              <span class="skill-tag">Few-shot Prompting</span>
+              <span class="skill-tag">Chain of Thought</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3><i class="fas fa-code"></i> Programming</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">C++</span>
+              <span class="skill-tag">HTML</span>
+              <span class="skill-tag">CSS</span>
+              <span class="skill-tag">JavaScript</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3><i class="fas fa-chart-line"></i> Data Science</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Regression</span>
+              <span class="skill-tag">Clustering</span>
+              <span class="skill-tag">Data Preprocessing</span>
+              <span class="skill-tag">Naive Bayes</span>
+              <span class="skill-tag">Scikit-learn</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3><i class="fas fa-tools"></i> Frameworks & Tools</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Flask</span>
+              <span class="skill-tag">Tkinter</span>
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">SMTP</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3><i class="fas fa-search"></i> Market Research</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Competitive Analysis</span>
+              <span class="skill-tag">Vendor Profiling</span>
+              <span class="skill-tag">SWOT Analysis</span>
+              <span class="skill-tag">Capability Mapping</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3><i class="fas fa-lightbulb"></i> Soft Skills</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Critical Thinking</span>
+              <span class="skill-tag">Problem Solving</span>
+              <span class="skill-tag">Collaboration</span>
+              <span class="skill-tag">Communication</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="education">
-    <h2>Education</h2>
-    <p><strong>B.Tech. (CSE)</strong> - Roorkee College Of Engineering (2021 – 2024)</p>
-    <p><strong>Diploma (Computer Science)</strong> - BTTI Pilani (2018 – 2021)</p>
-    <p><strong>Secondary</strong> - VCS Mandawar (2017 – 2018)</p>
-  </section>
+    <section id="projects" class="fade-in">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-subtitle">Some of my recent work and contributions</p>
+        </div>
+        <div id="projects-container" class="projects-grid">
+          <div class="loading">
+            <div class="spinner"></div>
+            Loading projects...
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li><strong>Prompt Engineering:</strong> Persona-based design, zero-shot and few-shot prompting</li>
-      <li><strong>Frameworks & Tools:</strong> Tkinter, Flask, Git, SMTP, Scikit-learn</li>
-      <li><strong>Soft Skills:</strong> Critical thinking, problem-solving, collaboration</li>
-      <li><strong>Market Research:</strong> Competitive analysis, vendor profiling, SWOT analysis, capability mapping</li>
-      <li><strong>Data Science:</strong> Regression, Clustering, Data Preprocessing, Naive Bayes</li>
-      <li><strong>Programming:</strong> Python, C++, HTML, CSS</li>
-    </ul>
-  </section>
+    <section id="experience" class="fade-in">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Professional Experience</h2>
+          <p class="section-subtitle">My career journey and achievements</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3 class="timeline-title">Market Research Analyst – SWOT & GIST</h3>
+            <p class="timeline-period">Oct 2024 – Present</p>
+            <div class="timeline-content">
+              <ul>
+                <li>Conducted in-depth research on Intelligent Document Processing (IDP) and Enterprise Fraud Management (EFM)</li>
+                <li>Drafted 10+ comprehensive vendor profiles highlighting capabilities, market positioning, and strategy</li>
+                <li>Built Capability Mapping Reports, aiding decision-making for clients and internal stakeholders</li>
+                <li>Integrated prompt engineering techniques into market research workflows to boost insight quality</li>
+                <li>Reduced report turnaround time by 20% by applying task-specific prompting and automation tools</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="projects">
-  <h2>Projects</h2>
-  <div id="projects-container">
-    <p>Loading projects...</p>
-  </div>
-</section>
+    <section id="education" class="fade-in">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Education</h2>
+          <p class="section-subtitle">Academic background and qualifications</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3 class="timeline-title">B.Tech. Computer Science Engineering</h3>
+            <p class="timeline-period">2021 – 2024</p>
+            <div class="timeline-content">
+              <p style="color: var(--text-secondary);">Roorkee College Of Engineering</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <h3 class="timeline-title">Diploma in Computer Science</h3>
+            <p class="timeline-period">2018 – 2021</p>
+            <div class="timeline-content">
+              <p style="color: var(--text-secondary);">BTTI Pilani</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <h3 class="timeline-title">Secondary Education</h3>
+            <p class="timeline-period">2017 – 2018</p>
+            <div class="timeline-content">
+              <p style="color: var(--text-secondary);">VCS Mandawar</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- Script -->
-<script src="static/script.js"></script>
+    <section id="certifications" class="fade-in">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Certifications</h2>
+          <p class="section-subtitle">Professional development and learning achievements</p>
+        </div>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <div class="cert-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="cert-info">
+              <h4>Prompt Engineering For ChatGPT</h4>
+              <p>Coursera • 2024</p>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">
+              <i class="fab fa-python"></i>
+            </div>
+            <div class="cert-info">
+              <h4>Python for Data Science</h4>
+              <p>NPTEL • 2022</p>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div class="cert-info">
+              <h4>Artificial Intelligence Fundamentals</h4>
+              <p>IBM Skill Build • 2024</p>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <div class="cert-info">
+              <h4>Basics of Machine Learning</h4>
+              <p>Great Learning Academy • 2024</p>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="cert-info">
+              <h4>OOP's Using C++</h4>
+              <p>Great Learning Academy • 2022</p>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+            <div class="cert-info">
+              <h4>Computer Vision Essentials</h4>
+              <p>Great Learning Academy • 2024</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-
-  <section id="certifications">
-    <h2>Certifications</h2>
-    <ul>
-      <li>Prompt Engineering For ChatGPT – Coursera (2024)</li>
-      <li>Python for Data Science – NPTEL (2022)</li>
-      <li>Artificial Intelligence Fundamentals – IBM Skill Build (2024)</li>
-      <li>Basics of Machine Learning – Great Learning Academy (2024)</li>
-      <li>OOP'S Using C++ – Great Learning Academy (2022)</li>
-      <li>Computer Vision Essentials – Great Learning Academy (2024)</li>
-    </ul>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:gt780860@gmail.com">gt780860@gmail.com</a></p>
-    <p>Phone: <a href="tel:+919352859545">+91 9352859545</a></p>
-  </section>
+    <section id="contact" class="fade-in">
+      <div class="container">
+        <div class="contact-content">
+          <div class="section-header">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="section-subtitle">Ready to collaborate? I'd love to hear from you!</p>
+          </div>
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div>
+                <h4>Email</h4>
+                <a href="mailto:gt780860@gmail.com">gt780860@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div>
+                <h4>Phone</h4>
+                <a href="tel:+919352859545">+91 9352859545</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>© 2025 Gaurav Tiwari</p>
+    <div class="container">
+      <p>&copy; 2025 Gaurav Tiwari. All rights reserved.</p>
+    </div>
   </footer>
 
   <script src="static/script.js"></script>
