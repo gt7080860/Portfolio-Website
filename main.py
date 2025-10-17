@@ -1,42 +1,3 @@
-"""from flask import Flask, render_template, url_for, send_from_directory, send_file
-import os
-import json
-
-app = Flask(__name__)
-
-#UPLOAD_FOLDER = 'static/uploads'
-RESUME_PATH = 'static/Gaurav_Tiwari_Resume.pdf'
-PROJECTS_JSON = 'projects.json'
-
-#app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-
-@app.route('/')
-def index():
-    # Load project data from JSON file
-    if os.path.exists(PROJECTS_JSON):
-        with open(PROJECTS_JSON, 'r') as f:
-            projects = json.load(f)
-    else:
-        projects = []
-
-    return render_template('index.html', projects=projects)
-
-
-@app.route('/download/<filename>')
-def download_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
-
-
-@app.route('/resume')
-def download_resume():
-    return send_file(RESUME_PATH, as_attachment=True)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
-    
-    """
 from flask import Flask, render_template, url_for, send_from_directory, send_file, request, redirect, session, flash
 import os
 import json
@@ -51,7 +12,7 @@ app.secret_key = os.getenv('SECRET_KEY')
 UPLOAD_FOLDER = 'static'
 ALLOWED_EXTENSIONS = {'pdf'}
 RESUME_PATH = 'static/Gaurav_Tiwari_Resume.pdf'
-PROJECTS_JSON = 'projects.json'
+PROJECTS_JSON = 'static/projects.json'
 ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD')
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -98,7 +59,14 @@ def admin_dashboard():
     # Check if resume exists
     resume_exists = os.path.exists(RESUME_PATH)
     
-    return render_template('admin_dashboard.html', resume_exists=resume_exists)
+    # Load projects
+    if os.path.exists(PROJECTS_JSON):
+        with open(PROJECTS_JSON, 'r') as f:
+            projects = json.load(f)
+    else:
+        projects = []
+    
+    return render_template('admin_dashboard.html', resume_exists=resume_exists, projects=projects)
 
 
 @app.route('/admin/upload-resume', methods=['POST'])
@@ -127,6 +95,80 @@ def upload_resume():
     else:
         flash('Only PDF files are allowed', 'error')
         return redirect('/admin/dashboard')
+
+
+@app.route('/admin/add-project', methods=['POST'])
+def add_project():
+    if not session.get('admin_logged_in'):
+        flash('Please login first.', 'error')
+        return redirect('/admin/login')
+    
+    # Get form data
+    name = request.form.get('name')
+    description = request.form.get('description')
+    start_date = request.form.get('start_date')
+    end_date = request.form.get('end_date')
+    github_link = request.form.get('github_link')
+    
+    # Validate data
+    if not all([name, description, start_date, end_date, github_link]):
+        flash('All fields are required!', 'error')
+        return redirect('/admin/dashboard')
+    
+    # Load existing projects
+    if os.path.exists(PROJECTS_JSON):
+        with open(PROJECTS_JSON, 'r') as f:
+            projects = json.load(f)
+    else:
+        projects = []
+    
+    # Create new project
+    new_project = {
+        'name': name,
+        'description': description,
+        'start_date': start_date,
+        'end_date': end_date,
+        'github_link': github_link
+    }
+    
+    # Add to projects list
+    projects.append(new_project)
+    
+    # Save to JSON file
+    with open(PROJECTS_JSON, 'w') as f:
+        json.dump(projects, f, indent=2)
+    
+    flash('Project added successfully!', 'success')
+    return redirect('/admin/dashboard')
+
+
+@app.route('/admin/delete-project/<int:index>', methods=['POST'])
+def delete_project(index):
+    if not session.get('admin_logged_in'):
+        flash('Please login first.', 'error')
+        return redirect('/admin/login')
+    
+    # Load existing projects
+    if os.path.exists(PROJECTS_JSON):
+        with open(PROJECTS_JSON, 'r') as f:
+            projects = json.load(f)
+    else:
+        flash('No projects found!', 'error')
+        return redirect('/admin/dashboard')
+    
+    # Delete project
+    if 0 <= index < len(projects):
+        deleted_project = projects.pop(index)
+        
+        # Save updated projects
+        with open(PROJECTS_JSON, 'w') as f:
+            json.dump(projects, f, indent=2)
+        
+        flash(f'Project "{deleted_project["name"]}" deleted successfully!', 'success')
+    else:
+        flash('Invalid project index!', 'error')
+    
+    return redirect('/admin/dashboard')
 
 
 @app.route('/admin/logout')
