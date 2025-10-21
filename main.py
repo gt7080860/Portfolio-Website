@@ -25,6 +25,17 @@ def allowed_file(filename):
 
 @app.route('/')
 def index():
+    # Redirect to landing page first
+    return redirect('/landing')
+
+
+@app.route('/landing')
+def landing():
+    return render_template('landing.html')
+
+
+@app.route('/portfolio')
+def portfolio():
     # Load project data from JSON file
     if os.path.exists(PROJECTS_JSON):
         with open(PROJECTS_JSON, 'r') as f:
