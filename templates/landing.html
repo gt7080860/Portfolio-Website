@@ -374,41 +374,51 @@
   </div>
 
   <script>
-    // Photo paths
-    // Photo paths
-const photos = [
-  '/static/photos/image1.jpg',
-  '/static/photos/image2.jpg',
-  '/static/photos/image3.jpg',
-  '/static/photos/image4.jpg',
-  '/static/photos/image5.jpg',
-  '/static/photos/image6.jpg',
-  '/static/photos/image7.jpg',
-  '/static/photos/image8.jpg',
-  '/static/photos/image9.jpg',
-  '/static/photos/image10.jpg',
-  '/static/photos/image12.jpg',
-  '/static/photos/image13.jpg',
-  '/static/photos/image14.jpg'
-];
+    // Photo paths - Updated with all 19 images
+    const photos = [
+      '/static/photos/image1.jpg',
+      '/static/photos/image2.jpg',
+      '/static/photos/image3.jpg',
+      '/static/photos/image4.jpg',
+      '/static/photos/image5.jpg',
+      '/static/photos/image6.jpg',
+      '/static/photos/image7.jpg',
+      '/static/photos/image8.jpg',
+      '/static/photos/image9.jpg',
+      '/static/photos/image10.jpg',
+      '/static/photos/image12.jpg',
+      '/static/photos/image13.jpg',
+      '/static/photos/image14.jpg',
+      '/static/photos/image15.jpg',
+      '/static/photos/image16.jpg',
+      '/static/photos/image17.jpg',
+      '/static/photos/image18.jpg',
+      '/static/photos/image19.jpg',
+      '/static/photos/image20.jpg'
+    ];
 
-    // Background positions for shrunken photos
-    // Background positions for shrunken photos (aligned with new photo order)
-const bgPositions = [
-  { x: -300, y: -200 },  // image1.jpg
-  { x: -250, y: -100 },  // image2.jpg
-  { x: -350, y: 150 },   // image3.jpg
-  { x: -400, y: 50 },    // image4.jpg
-  { x: -200, y: 250 },   // image5.jpg
-  { x: 250, y: 100 },    // image6.jpg
-  { x: 300, y: -250 },   // image7.jpg
-  { x: 400, y: -50 },    // image8.jpg
-  { x: 450, y: 100 },    // image9.jpg
-  { x: 200, y: -150 },   // image10.jpg
-  { x: -450, y: -50 },   // image12.jpg
-  { x: 350, y: 200 },    // image13.jpg
-  { x: -150, y: -180 }   // image14.jpg
-];
+    // Background positions for shrunken photos - Updated for all 19 images
+    const bgPositions = [
+      { x: -300, y: -200 },   // image1.jpg
+      { x: -250, y: -100 },   // image2.jpg
+      { x: -350, y: 150 },    // image3.jpg
+      { x: -400, y: 50 },     // image4.jpg
+      { x: -200, y: 250 },    // image5.jpg
+      { x: 250, y: 100 },     // image6.jpg
+      { x: 300, y: -250 },    // image7.jpg
+      { x: 400, y: -50 },     // image8.jpg
+      { x: 450, y: 100 },     // image9.jpg
+      { x: 200, y: -150 },    // image10.jpg
+      { x: -450, y: -50 },    // image12.jpg
+      { x: 350, y: 200 },     // image13.jpg
+      { x: -150, y: -180 },   // image14.jpg
+      { x: -100, y: 200 },    // image15.jpg
+      { x: 480, y: -120 },    // image16.jpg
+      { x: -320, y: -280 },   // image17.jpg
+      { x: 150, y: 280 },     // image18.jpg
+      { x: -500, y: 120 },    // image19.jpg
+      { x: 380, y: -200 }     // image20.jpg
+    ];
 
     let currentPhotoIndex = 0;
     let animationStarted = false;
