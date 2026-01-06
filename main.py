@@ -98,7 +98,7 @@ def upload_resume():
     
     if file and allowed_file(file.filename):
         # Save the file with a fixed name
-        filename = 'Gaurav_Tiwari_Resume.pdf'
+        filename = 'Gaurav-Tiwari-Resume.pdf'
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(filepath)
         flash('Resume uploaded successfully!', 'success')
