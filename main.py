@@ -1,7 +1,6 @@
-from flask import Flask, render_template, url_for, send_from_directory, send_file, request, redirect, session, flash
+from flask import Flask, render_template, send_file, request, redirect, session, flash
 import os
 import json
-from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -11,12 +10,16 @@ app.secret_key = os.getenv('SECRET_KEY')
 
 UPLOAD_FOLDER = 'static'
 ALLOWED_EXTENSIONS = {'pdf'}
-RESUME_PATH = 'static/Gaurav_Tiwari_Resume.pdf'
+
+# Fixed, permanent resume path
+RESUME_FILENAME = 'Gaurav-Tiwari-Resume.pdf'
+RESUME_PATH = os.path.join(UPLOAD_FOLDER, RESUME_FILENAME)
+
 PROJECTS_JSON = 'static/projects.json'
 ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD')
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB
 
 
 def allowed_file(filename):
@@ -25,7 +28,6 @@ def allowed_file(filename):
 
 @app.route('/')
 def index():
-    # Redirect to landing page first
     return redirect('/landing')
 
 
@@ -36,7 +38,6 @@ def landing():
 
 @app.route('/portfolio')
 def portfolio():
-    # Load project data from JSON file
     if os.path.exists(PROJECTS_JSON):
         with open(PROJECTS_JSON, 'r') as f:
             projects = json.load(f)
@@ -55,9 +56,9 @@ def admin_login():
             flash('Login successful!', 'success')
             return redirect('/admin/dashboard')
         else:
-            flash('Incorrect password. Please try again.', 'error')
+            flash('Incorrect password.', 'error')
             return redirect('/admin/login')
-    
+
     return render_template('admin_login.html')
 
 
@@ -66,18 +67,20 @@ def admin_dashboard():
     if not session.get('admin_logged_in'):
         flash('Please login first.', 'error')
         return redirect('/admin/login')
-    
-    # Check if resume exists
+
     resume_exists = os.path.exists(RESUME_PATH)
-    
-    # Load projects
+
     if os.path.exists(PROJECTS_JSON):
         with open(PROJECTS_JSON, 'r') as f:
             projects = json.load(f)
     else:
         projects = []
-    
-    return render_template('admin_dashboard.html', resume_exists=resume_exists, projects=projects)
+
+    return render_template(
+        'admin_dashboard.html',
+        resume_exists=resume_exists,
+        projects=projects
+    )
 
 
 @app.route('/admin/upload-resume', methods=['POST'])
@@ -85,22 +88,20 @@ def upload_resume():
     if not session.get('admin_logged_in'):
         flash('Please login first.', 'error')
         return redirect('/admin/login')
-    
+
     if 'resume' not in request.files:
         flash('No file selected', 'error')
         return redirect('/admin/dashboard')
-    
+
     file = request.files['resume']
-    
+
     if file.filename == '':
         flash('No file selected', 'error')
         return redirect('/admin/dashboard')
-    
+
     if file and allowed_file(file.filename):
-        # Save the file with a fixed name
-        filename = 'Gaurav-Tiwari-Resume.pdf'
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(filepath)
+        # Always overwrite the same resume file
+        file.save(RESUME_PATH)
         flash('Resume uploaded successfully!', 'success')
         return redirect('/admin/dashboard')
     else:
@@ -113,42 +114,34 @@ def add_project():
     if not session.get('admin_logged_in'):
         flash('Please login first.', 'error')
         return redirect('/admin/login')
-    
-    # Get form data
+
     name = request.form.get('name')
     description = request.form.get('description')
     start_date = request.form.get('start_date')
     end_date = request.form.get('end_date')
     github_link = request.form.get('github_link')
-    
-    # Validate data
+
     if not all([name, description, start_date, end_date, github_link]):
         flash('All fields are required!', 'error')
         return redirect('/admin/dashboard')
-    
-    # Load existing projects
+
     if os.path.exists(PROJECTS_JSON):
         with open(PROJECTS_JSON, 'r') as f:
             projects = json.load(f)
     else:
         projects = []
-    
-    # Create new project
-    new_project = {
+
+    projects.append({
         'name': name,
         'description': description,
         'start_date': start_date,
         'end_date': end_date,
         'github_link': github_link
-    }
-    
-    # Add to projects list
-    projects.append(new_project)
-    
-    # Save to JSON file
+    })
+
     with open(PROJECTS_JSON, 'w') as f:
         json.dump(projects, f, indent=2)
-    
+
     flash('Project added successfully!', 'success')
     return redirect('/admin/dashboard')
 
@@ -158,27 +151,22 @@ def delete_project(index):
     if not session.get('admin_logged_in'):
         flash('Please login first.', 'error')
         return redirect('/admin/login')
-    
-    # Load existing projects
-    if os.path.exists(PROJECTS_JSON):
-        with open(PROJECTS_JSON, 'r') as f:
-            projects = json.load(f)
-    else:
+
+    if not os.path.exists(PROJECTS_JSON):
         flash('No projects found!', 'error')
         return redirect('/admin/dashboard')
-    
-    # Delete project
+
+    with open(PROJECTS_JSON, 'r') as f:
+        projects = json.load(f)
+
     if 0 <= index < len(projects):
-        deleted_project = projects.pop(index)
-        
-        # Save updated projects
+        deleted = projects.pop(index)
         with open(PROJECTS_JSON, 'w') as f:
             json.dump(projects, f, indent=2)
-        
-        flash(f'Project "{deleted_project["name"]}" deleted successfully!', 'success')
+        flash(f'Project "{deleted["name"]}" deleted!', 'success')
     else:
         flash('Invalid project index!', 'error')
-    
+
     return redirect('/admin/dashboard')
 
 
@@ -189,15 +177,14 @@ def admin_logout():
     return redirect('/')
 
 
-@app.route('/download/<filename>')
-def download_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename, as_attachment=True)
-
-
 @app.route('/resume')
 def download_resume():
     if os.path.exists(RESUME_PATH):
-        return send_file(RESUME_PATH, as_attachment=True)
+        return send_file(
+            RESUME_PATH,
+            as_attachment=True,
+            download_name='Gaurav_Tiwari_Resume.pdf'
+        )
     else:
         flash('Resume not found', 'error')
         return redirect('/')
