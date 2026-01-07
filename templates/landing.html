@@ -390,7 +390,6 @@
       '/static/photos/image13.jpg',
       '/static/photos/image14.jpg',
       '/static/photos/image15.jpeg',
-      '/static/photos/image15.jpeg',
       '/static/photos/image16.jpeg',
       '/static/photos/image17.jpeg',
       '/static/photos/image18.jpeg',
@@ -493,7 +492,7 @@
         }
         
         currentPhotoIndex++;
-        setTimeout(() => showNextPhoto(), 1500); // Show each for 1.5 seconds
+        setTimeout(() => showNextPhoto(), 1800); // Show each for 1.5 seconds
       } else {
         // All photos shown, start transformation
         setTimeout(() => transformPhotos(), 800);
@@ -526,8 +525,8 @@
             setTimeout(() => {
               bgPhoto.classList.add('visible');
             }, 100);
-          }, 1500);
-        }, index * 100);
+          }, 1200);
+        }, index * 120);
       });
 
       // Show name after photos shrink
